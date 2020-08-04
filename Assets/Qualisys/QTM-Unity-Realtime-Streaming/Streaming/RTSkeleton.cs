@@ -8,6 +8,10 @@ using QTMRealTimeSDK;
 
 namespace QualisysRealTime.Unity {
     public class RTSkeleton : MonoBehaviour {
+
+        //custom,  choose get data from QTM or file
+        public bool isUsingQTM = true;
+
         public string SkeletonName = "Put QTM skeleton name here";
 
         private Avatar mSourceAvatar;
@@ -25,24 +29,43 @@ namespace QualisysRealTime.Unity {
         private Skeleton mQtmSkeletonCache;
 
         void Update() {
+            Skeleton skeleton = null;
+
             if (rtClient == null)
                 rtClient = RTClient.GetInstance();
+            if (isUsingQTM) {
+                //get skeleton from QTM
+                skeleton = rtClient.GetSkeleton(SkeletonName);
+            } else {
+                Debug.Log("#####  get skeleton data from file instead of QTM  #####");
 
-            var skeleton = rtClient.GetSkeleton(SkeletonName);
+                //get skeleton from file
+                Skeleton tmpSkeleton = rtClient.GetSkeleton(SkeletonName);
+                if (tmpSkeleton != null) {
+                    Utils.Save(tmpSkeleton.Segments.ToList());
+                    skeleton = new Skeleton();
+                    skeleton.Name = tmpSkeleton.Name;
+                    skeleton.Segments = Utils.load<List<KeyValuePair<uint, Segment>>>().ToDictionary(kv => kv.Key, kv => kv.Value);
+                    Utils.Save(skeleton.Segments.ToList(), "2.txt");
+                } else {
+                    Debug.Log("#####skeleton null########");
+                }
+            }
 
-            if (mQtmSkeletonCache != skeleton) {
+            if (mQtmSkeletonCache == null) {
+                Debug.Log("Flush skeleton cache");
+
                 mQtmSkeletonCache = skeleton;
 
                 if (mQtmSkeletonCache == null)
                     return;
 
                 CreateMecanimToQtmSegmentNames(SkeletonName);
-
-                if (mStreamedRootObject != null)
+                if (mStreamedRootObject != null) {
                     GameObject.Destroy(mStreamedRootObject);
+                }
 
                 mStreamedRootObject = new GameObject(this.SkeletonName);
-
                 mQTmSegmentIdToGameObject = new Dictionary<uint, GameObject>(mQtmSkeletonCache.Segments.Count);
 
                 foreach (var segment in mQtmSkeletonCache.Segments.ToList()) {

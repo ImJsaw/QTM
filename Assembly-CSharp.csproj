@@ -82,6 +82,7 @@
      <Compile Include="Assets\Qualisys\QTM-Unity-Realtime-Streaming\Streaming\RTObjects.cs" />
      <Compile Include="Assets\Qualisys\QTM-Unity-Realtime-Streaming\Streaming\RTSkeleton.cs" />
      <Compile Include="Assets\Qualisys\QTM-Unity-Realtime-Streaming\Streaming\RTUnlabeledMarker.cs" />
+     <Compile Include="Assets\Scripts\Utils.cs" />
      <None Include="Assets\smcs.rsp" />
      <None Include="Assets\mcs.rsp" />
      <None Include="Assets\csc.rsp" />
@@ -268,6 +269,9 @@
  </Reference>
  <Reference Include="UnityEditor">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.4f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
+ </Reference>
+ <Reference Include="Newtonsoft.Json">
+ <HintPath>D:/lab/Unity/QTM/Assets/UnityPackages/JsonNet-Lite/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.4f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
