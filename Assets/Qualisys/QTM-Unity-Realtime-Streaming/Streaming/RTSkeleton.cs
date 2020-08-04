@@ -11,6 +11,7 @@ namespace QualisysRealTime.Unity {
 
         //custom,  choose get data from QTM or file
         public bool isUsingQTM = true;
+        private bool isInit = false;
 
         public string SkeletonName = "Put QTM skeleton name here";
 
@@ -26,24 +27,31 @@ namespace QualisysRealTime.Unity {
         private HumanPoseHandler mDestiationPoseHandler;
 
         protected RTClient rtClient;
-        private Skeleton mQtmSkeletonCache;
+        private mSkeleton mQtmSkeletonCache;
+
+        private mSkeleton getSkeletonFromQTM(string SkeletonName) {
+            Skeleton sk = rtClient.GetSkeleton(SkeletonName);
+            if (sk == null)
+                return null;
+            return new mSkeleton(sk);
+        }
 
         void Update() {
-            Skeleton skeleton = null;
+            mSkeleton skeleton = null;
 
             if (rtClient == null)
                 rtClient = RTClient.GetInstance();
             if (isUsingQTM) {
                 //get skeleton from QTM
-                skeleton = rtClient.GetSkeleton(SkeletonName);
+                skeleton = getSkeletonFromQTM(SkeletonName);
             } else {
                 Debug.Log("#####  get skeleton data from file instead of QTM  #####");
 
                 //get skeleton from file
-                Skeleton tmpSkeleton = rtClient.GetSkeleton(SkeletonName);
+                mSkeleton tmpSkeleton = getSkeletonFromQTM(SkeletonName);
                 if (tmpSkeleton != null) {
                     Utils.Save(tmpSkeleton.Segments.ToList());
-                    skeleton = new Skeleton();
+                    skeleton = new mSkeleton();
                     skeleton.Name = tmpSkeleton.Name;
                     skeleton.Segments = Utils.load<List<KeyValuePair<uint, Segment>>>().ToDictionary(kv => kv.Key, kv => kv.Value);
                     Utils.Save(skeleton.Segments.ToList(), "2.txt");
@@ -52,34 +60,14 @@ namespace QualisysRealTime.Unity {
                 }
             }
 
-            if (mQtmSkeletonCache == null) {
+            //update local skeleton data
+            if (mQtmSkeletonCache != skeleton) {
                 Debug.Log("Flush skeleton cache");
-
                 mQtmSkeletonCache = skeleton;
-
                 if (mQtmSkeletonCache == null)
                     return;
 
-                CreateMecanimToQtmSegmentNames(SkeletonName);
-                if (mStreamedRootObject != null) {
-                    GameObject.Destroy(mStreamedRootObject);
-                }
-
-                mStreamedRootObject = new GameObject(this.SkeletonName);
-                mQTmSegmentIdToGameObject = new Dictionary<uint, GameObject>(mQtmSkeletonCache.Segments.Count);
-
-                foreach (var segment in mQtmSkeletonCache.Segments.ToList()) {
-                    var gameObject = new GameObject(this.SkeletonName + "_" + segment.Value.Name);
-                    gameObject.transform.parent = segment.Value.ParentId == 0 ? mStreamedRootObject.transform : mQTmSegmentIdToGameObject[segment.Value.ParentId].transform;
-                    gameObject.transform.localPosition = segment.Value.TPosition;
-                    mQTmSegmentIdToGameObject[segment.Value.Id] = gameObject;
-                }
-
-                BuildMecanimAvatarFromQtmTPose();
-
-                mStreamedRootObject.transform.SetParent(this.transform, false);
-                mStreamedRootObject.transform.Rotate(new Vector3(0, 90, 0), Space.Self);
-                return;
+                checkInit();
             }
 
             if (mQtmSkeletonCache == null)
@@ -98,6 +86,27 @@ namespace QualisysRealTime.Unity {
                 mDestiationPoseHandler.SetHumanPose(ref mHumanPose);
             } else {
                 Debug.Log("mSourcePoseHandler null");
+            }
+        }
+
+        private void checkInit() {
+            if (!isInit) {
+                CreateMecanimToQtmSegmentNames(SkeletonName);
+                if (mStreamedRootObject != null) {
+                    Destroy(mStreamedRootObject);
+                }
+                mStreamedRootObject = new GameObject(SkeletonName);
+                mQTmSegmentIdToGameObject = new Dictionary<uint, GameObject>(mQtmSkeletonCache.Segments.Count);
+                foreach (var segment in mQtmSkeletonCache.Segments.ToList()) {
+                    var gameObject = new GameObject(SkeletonName + "_" + segment.Value.Name);
+                    gameObject.transform.parent = segment.Value.ParentId == 0 ? mStreamedRootObject.transform : mQTmSegmentIdToGameObject[segment.Value.ParentId].transform;
+                    gameObject.transform.localPosition = segment.Value.TPosition;
+                    mQTmSegmentIdToGameObject[segment.Value.Id] = gameObject;
+                }
+                BuildMecanimAvatarFromQtmTPose();
+                mStreamedRootObject.transform.SetParent(transform, false);
+                mStreamedRootObject.transform.Rotate(new Vector3(0, 90, 0), Space.Self);
+                isInit = true;
             }
         }
 

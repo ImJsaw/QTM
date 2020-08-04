@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace QualisysRealTime.Unity {
     // Class for 6DOF with unity data types
@@ -75,9 +76,30 @@ namespace QualisysRealTime.Unity {
         public string Name;
         public Dictionary<uint, Segment> Segments = new Dictionary<uint, Segment>();
     }
-    
+
+    [Serializable]
+    public class mSkeleton {
+        public mSkeleton() {
+            Name = "null mSkeleton";
+        }
+        public mSkeleton(Skeleton sk) {
+            Name = sk.Name;
+            _seg = sk.Segments.ToList();
+        }
+        public string Name;
+        public Dictionary<uint, Segment> Segments {
+            get {
+                return _seg.ToDictionary(kv => kv.Key, kv => kv.Value);
+            }
+            set {
+                _seg = value.ToList();
+            }
+        }
+        private List<KeyValuePair<uint, Segment>> _seg = new Dictionary<uint, Segment>().ToList();
+    }
+
     //custom class to avoid vector3 issue
-    
+
     [Serializable]
     public class SerializableTransform {
         public SerializableTransform(Vector3 position, Quaternion rotation) {
@@ -93,7 +115,7 @@ namespace QualisysRealTime.Unity {
         public Vector3 pos { get { return _pos.v3(); } set { _pos.setPos(value); } }
         public Quaternion rot { get { return _rot.Quat(); } set { _rot.setRot(value); } }
     }
-    
+
     [Serializable]
     public class SerializablePos {
         public float x;
@@ -114,7 +136,7 @@ namespace QualisysRealTime.Unity {
             z = vector.z;
         }
     }
-    
+
     [Serializable]
     public class SerializableRot {
         public float x;
@@ -138,6 +160,6 @@ namespace QualisysRealTime.Unity {
             w = r.w;
         }
     }
-    
+
 
 }
