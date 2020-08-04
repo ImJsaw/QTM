@@ -38,7 +38,6 @@ public class Utils {
             ReferenceLoopHandling = ReferenceLoopHandling.Ignore//忽略實體中實體，不再序列化里面包含的實體
         }));
         //File.WriteAllBytes(filename, Trans2byte(input));
-
     }
 
     public static T load<T>(string filename = "1.txt") {

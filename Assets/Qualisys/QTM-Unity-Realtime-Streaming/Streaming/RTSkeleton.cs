@@ -5,12 +5,19 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using QTMRealTimeSDK;
+using System.Threading;
 
 namespace QualisysRealTime.Unity {
     public class RTSkeleton : MonoBehaviour {
 
         //custom,  choose get data from QTM or file
         public bool isUsingQTM = true;
+        public bool isRecord = false;
+        public bool isPlay = false;
+
+
+        public int recordLength = 500;
+
         private bool isInit = false;
 
         public string SkeletonName = "Put QTM skeleton name here";
@@ -36,11 +43,20 @@ namespace QualisysRealTime.Unity {
             return new mSkeleton(sk);
         }
 
+        //temp for save record
+        private qtmRecord Rec = new qtmRecord();
+        //temp for play record
+        private qtmRecord playRec = null;
+        private int recordCount = 0;
+        private int playCount = 0;
+        
         void Update() {
             mSkeleton skeleton = null;
 
             if (rtClient == null)
                 rtClient = RTClient.GetInstance();
+
+
             if (isUsingQTM) {
                 //get skeleton from QTM
                 skeleton = getSkeletonFromQTM(SkeletonName);
@@ -54,10 +70,34 @@ namespace QualisysRealTime.Unity {
                     skeleton = new mSkeleton();
                     skeleton.Name = tmpSkeleton.Name;
                     skeleton.Segments = Utils.load<List<KeyValuePair<uint, Segment>>>().ToDictionary(kv => kv.Key, kv => kv.Value);
-                    Utils.Save(skeleton.Segments.ToList(), "2.txt");
                 } else {
                     Debug.Log("#####skeleton null########");
                 }
+            }
+
+            if (isRecord && skeleton != null) {
+                Debug.Log("####RECORDING####");
+                if(recordCount < recordLength) {
+                    recordCount++;
+                    Rec.records.Add(skeleton._seg);
+                } else {
+                    isRecord = false;
+                    Rec.length = recordCount;
+                    //use multithread to avoid extreme lag
+                    new Thread(saveRecord).Start();
+                }
+            }
+
+            if (isPlay) {
+                if (playRec == null) {
+                    playRec = Utils.load<qtmRecord>();
+                    Debug.Log("Load rec");
+                }
+                skeleton = new mSkeleton();
+                skeleton.Name = SkeletonName;
+                skeleton._seg = playRec.records[playCount % playRec.length];
+                playCount++;
+                Debug.Log("PLAYING");
             }
 
             //update local skeleton data
@@ -108,6 +148,13 @@ namespace QualisysRealTime.Unity {
                 mStreamedRootObject.transform.Rotate(new Vector3(0, 90, 0), Space.Self);
                 isInit = true;
             }
+        }
+
+        private void saveRecord() {
+            Debug.Log("Save start");
+            Utils.Save(Rec);
+            Debug.Log("Save complete");
+
         }
 
         private void BuildMecanimAvatarFromQtmTPose() {

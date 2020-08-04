@@ -95,7 +95,12 @@ namespace QualisysRealTime.Unity {
                 _seg = value.ToList();
             }
         }
-        private List<KeyValuePair<uint, Segment>> _seg = new Dictionary<uint, Segment>().ToList();
+        public List<KeyValuePair<uint, Segment>> _seg = new Dictionary<uint, Segment>().ToList();
+    }
+
+    public class qtmRecord {
+        public int length;
+        public List<List<KeyValuePair<uint, Segment>>> records = new List<List<KeyValuePair<uint, Segment>>>();
     }
 
     //custom class to avoid vector3 issue
