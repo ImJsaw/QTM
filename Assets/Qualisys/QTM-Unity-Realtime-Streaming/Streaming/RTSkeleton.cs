@@ -35,6 +35,7 @@ namespace QualisysRealTime.Unity {
 
         protected RTClient rtClient;
         private mSkeleton mQtmSkeletonCache;
+        private mSkeleton skeleton = null;
 
         private mSkeleton getSkeletonFromQTM(string SkeletonName) {
             Skeleton sk = rtClient.GetSkeleton(SkeletonName);
@@ -50,30 +51,30 @@ namespace QualisysRealTime.Unity {
         private int recordCount = 0;
         private int playCount = 0;
         
+        void FixedUpdate() {
+            if (isPlay) {
+
+                if (playRec == null) {
+                    playRec = Utils.load<qtmRecord>();
+                    Debug.Log("Load rec");
+                }
+                skeleton = new mSkeleton();
+                skeleton.Name = SkeletonName;
+                skeleton._seg = playRec.records[playCount % playRec.length];
+                playCount++;
+                Debug.Log("PLAYING");
+
+                updateSkeleton();
+            }
+        }
+
         void Update() {
-            mSkeleton skeleton = null;
+            skeleton = null;
 
             if (rtClient == null)
                 rtClient = RTClient.GetInstance();
 
-
-            if (isUsingQTM) {
-                //get skeleton from QTM
-                skeleton = getSkeletonFromQTM(SkeletonName);
-            } else {
-                Debug.Log("#####  get skeleton data from file instead of QTM  #####");
-
-                //get skeleton from file
-                mSkeleton tmpSkeleton = getSkeletonFromQTM(SkeletonName);
-                if (tmpSkeleton != null) {
-                    Utils.Save(tmpSkeleton.Segments.ToList());
-                    skeleton = new mSkeleton();
-                    skeleton.Name = tmpSkeleton.Name;
-                    skeleton.Segments = Utils.load<List<KeyValuePair<uint, Segment>>>().ToDictionary(kv => kv.Key, kv => kv.Value);
-                } else {
-                    Debug.Log("#####skeleton null########");
-                }
-            }
+            skeleton = getSkeletonFromQTM(SkeletonName);
 
             if (isRecord && skeleton != null) {
                 Debug.Log("####RECORDING####");
@@ -88,25 +89,19 @@ namespace QualisysRealTime.Unity {
                 }
             }
 
-            if (isPlay) {
-                if (playRec == null) {
-                    playRec = Utils.load<qtmRecord>();
-                    Debug.Log("Load rec");
-                }
-                skeleton = new mSkeleton();
-                skeleton.Name = SkeletonName;
-                skeleton._seg = playRec.records[playCount % playRec.length];
-                playCount++;
-                Debug.Log("PLAYING");
+            if (!isPlay) {
+                updateSkeleton();
             }
+            
+        }
 
+        private void updateSkeleton() {
             //update local skeleton data
             if (mQtmSkeletonCache != skeleton) {
                 Debug.Log("Flush skeleton cache");
                 mQtmSkeletonCache = skeleton;
                 if (mQtmSkeletonCache == null)
                     return;
-
                 checkInit();
             }
 

@@ -643,6 +643,7 @@ MonoBehaviour:
   isUsingQTM: 1
   isRecord: 0
   isPlay: 0
+  recordLength: 500
   SkeletonName: SR
   DestinationAvatar: {fileID: 9000000, guid: d5ba52808b56a934a9b637a2e5990966, type: 3}
 --- !u!1 &610434424
