@@ -6,18 +6,15 @@ using System.Collections.Generic;
 using System.Linq;
 using QTMRealTimeSDK;
 using System.Threading;
+using UnityEngine.UI;
 
 namespace QualisysRealTime.Unity {
     public class RTSkeleton : MonoBehaviour {
-
-        //custom,  choose get data from QTM or file
-        public bool isUsingQTM = true;
-        public bool isRecord = false;
-        public bool isPlay = false;
-
-
-        public int recordLength = 500;
-
+        public RecordMgr recordMgr = null;
+        private string fileName = null;
+        private bool isRecord = false;
+        private bool isPlay = false;
+        private bool isSaving = false;
         private bool isInit = false;
 
         public string SkeletonName = "Put QTM skeleton name here";
@@ -50,12 +47,36 @@ namespace QualisysRealTime.Unity {
         private qtmRecord playRec = null;
         private int recordCount = 0;
         private int playCount = 0;
-        
+
+        //start replay
+        public void OnReplay(string filename) {
+            isPlay = true;
+            playRec = null;
+            fileName = filename;
+        }
+
+        public void OnRecordTrigger(string filename) {
+            if (isSaving) {
+                Debug.Log("previous saving not complete yet!");
+                return;
+            }
+            fileName = filename;
+            isRecord = true;
+            recordCount = 0;
+        }
+
+        public void OnRecordStop() {
+            isRecord = false;
+            Rec.length = recordCount;
+            //use multithread to avoid extreme lag
+            new Thread(saveRecord).Start();
+        }
+
         void FixedUpdate() {
             if (isPlay) {
-
+                //check data
                 if (playRec == null) {
-                    playRec = Utils.load<qtmRecord>();
+                    playRec = Utils.load<qtmRecord>(fileName);
                     Debug.Log("Load rec");
                 }
                 skeleton = new mSkeleton();
@@ -63,42 +84,39 @@ namespace QualisysRealTime.Unity {
                 skeleton._seg = playRec.records[playCount % playRec.length];
                 playCount++;
                 Debug.Log("PLAYING");
-
                 updateSkeleton();
             }
         }
 
         void Update() {
+            //manage hint
+            if(recordMgr!= null) {
+                if (isSaving) {
+                    recordMgr.setHint("Saving...");
+                } else
+                    recordMgr.setHint("");
+            }
+            //get skeleton from QTM
             skeleton = null;
-
             if (rtClient == null)
                 rtClient = RTClient.GetInstance();
-
             skeleton = getSkeletonFromQTM(SkeletonName);
-
+            //record
             if (isRecord && skeleton != null) {
                 Debug.Log("####RECORDING####");
-                if(recordCount < recordLength) {
-                    recordCount++;
-                    Rec.records.Add(skeleton._seg);
-                } else {
-                    isRecord = false;
-                    Rec.length = recordCount;
-                    //use multithread to avoid extreme lag
-                    new Thread(saveRecord).Start();
-                }
+                recordCount++;
+                Rec.records.Add(skeleton._seg);
             }
-
+            //apply to model
             if (!isPlay) {
                 updateSkeleton();
             }
-            
         }
 
         private void updateSkeleton() {
             //update local skeleton data
             if (mQtmSkeletonCache != skeleton) {
-                Debug.Log("Flush skeleton cache");
+                //Debug.Log("Flush skeleton cache");
                 mQtmSkeletonCache = skeleton;
                 if (mQtmSkeletonCache == null)
                     return;
@@ -146,10 +164,13 @@ namespace QualisysRealTime.Unity {
         }
 
         private void saveRecord() {
+            if (isSaving)
+                Debug.LogError("previous saving not complete yet!");
+            isSaving = true;
             Debug.Log("Save start");
-            Utils.Save(Rec);
+            Utils.Save(Rec, fileName);
             Debug.Log("Save complete");
-
+            isSaving = false;
         }
 
         private void BuildMecanimAvatarFromQtmTPose() {
