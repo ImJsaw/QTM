@@ -1010,6 +1010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recordMgr: {fileID: 596246760}
+  playSpeed: 1
   SkeletonName: SR
   DestinationAvatar: {fileID: 9000000, guid: d5ba52808b56a934a9b637a2e5990966, type: 3}
 --- !u!1 &596246759

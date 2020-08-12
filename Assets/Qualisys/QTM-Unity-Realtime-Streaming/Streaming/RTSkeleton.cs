@@ -11,13 +11,14 @@ using UnityEngine.UI;
 namespace QualisysRealTime.Unity {
     public class RTSkeleton : MonoBehaviour {
         public RecordMgr recordMgr = null;
+        public float playSpeed = 1.0f;
         private string fileName = null;
         private bool isRecord = false;
         private bool isPlay = false;
         private bool isSaving = false;
         private bool isInit = false;
 
-        public string SkeletonName = "Put QTM skeleton name here";
+        public string SkeletonName = "SR";
 
         private Avatar mSourceAvatar;
         public Avatar DestinationAvatar;
@@ -46,7 +47,7 @@ namespace QualisysRealTime.Unity {
         //temp for play record
         private qtmRecord playRec = null;
         private int recordCount = 0;
-        private int playCount = 0;
+        private float playCount = 0;
 
         //start replay
         public void OnReplay(string filename) {
@@ -73,7 +74,15 @@ namespace QualisysRealTime.Unity {
         }
 
         void FixedUpdate() {
-            if (isPlay) {
+            //manage hint
+            if (recordMgr != null) {
+                if (isSaving) {
+                    recordMgr.setHint("Saving...");
+                } else
+                    recordMgr.setHint("");
+            }
+            //update skeleton
+            if (isPlay) {//replay mode
                 //check data
                 if (playRec == null) {
                     playRec = Utils.load<qtmRecord>(fileName);
@@ -81,35 +90,22 @@ namespace QualisysRealTime.Unity {
                 }
                 skeleton = new mSkeleton();
                 skeleton.Name = SkeletonName;
-                skeleton._seg = playRec.records[playCount % playRec.length];
-                playCount++;
+                skeleton._seg = playRec.records[Mathf.FloorToInt(playCount+0.5f) % playRec.length];
+                playCount+= (playSpeed*1.8f);
                 Debug.Log("PLAYING");
-                updateSkeleton();
+            } else {//stream mode
+                //get skeleton from QTM
+                skeleton = null;
+                if (rtClient == null)
+                    rtClient = RTClient.GetInstance();
+                skeleton = getSkeletonFromQTM(SkeletonName);
             }
-        }
-
-        void Update() {
-            //manage hint
-            if(recordMgr!= null) {
-                if (isSaving) {
-                    recordMgr.setHint("Saving...");
-                } else
-                    recordMgr.setHint("");
-            }
-            //get skeleton from QTM
-            skeleton = null;
-            if (rtClient == null)
-                rtClient = RTClient.GetInstance();
-            skeleton = getSkeletonFromQTM(SkeletonName);
+            updateSkeleton();
             //record
             if (isRecord && skeleton != null) {
                 Debug.Log("####RECORDING####");
                 recordCount++;
                 Rec.records.Add(skeleton._seg);
-            }
-            //apply to model
-            if (!isPlay) {
-                updateSkeleton();
             }
         }
 
