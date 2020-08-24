@@ -1,0 +1,1681 @@
+{
+  "length": 1,
+  "records": [
+    [
+      {
+        "Key": 1,
+        "Value": {
+          "Name": "Hips",
+          "Id": 1,
+          "ParentId": 0,
+          "Position": {
+            "x": 0.440545082,
+            "y": 1.018519,
+            "z": -1.06481588,
+            "normalized": {
+              "x": 0.2864493,
+              "y": 0.6622571,
+              "z": -0.69236,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 1.53795123,
+            "sqrMagnitude": 2.365294
+          },
+          "Rotation": {
+            "x": -0.0395207368,
+            "y": 0.727610469,
+            "z": -0.05095989,
+            "w": -0.6829525,
+            "eulerAngles": {
+              "x": 7.3620944,
+              "y": 266.418243,
+              "z": 0.698768,
+              "normalized": {
+                "x": 0.0276229568,
+                "y": 0.999614954,
+                "z": 0.00262181344,
+                "magnitude": 1.0,
+                "sqrMagnitude": 0.99999994
+              },
+              "magnitude": 266.520874,
+              "sqrMagnitude": 71033.37
+            },
+            "normalized": {
+              "x": -0.03952074,
+              "y": 0.7276105,
+              "z": -0.0509598926,
+              "w": -0.6829526,
+              "eulerAngles": {
+                "x": 7.3620944,
+                "y": 266.418243,
+                "z": 0.698768,
+                "normalized": {
+                  "x": 0.0276229568,
+                  "y": 0.999614954,
+                  "z": 0.00262181344,
+                  "magnitude": 1.0,
+                  "sqrMagnitude": 0.99999994
+                },
+                "magnitude": 266.520874,
+                "sqrMagnitude": 71033.37
+              }
+            }
+          },
+          "TPosition": {
+            "x": 0.0,
+            "y": 0.9673969,
+            "z": 0.0,
+            "normalized": {
+              "x": 0.0,
+              "y": 1.0,
+              "z": 0.0,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 0.9673969,
+            "sqrMagnitude": 0.9358568
+          },
+          "TRotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": -1.0,
+            "eulerAngles": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 0.0,
+              "sqrMagnitude": 0.0
+            }
+          }
+        }
+      },
+      {
+        "Key": 2,
+        "Value": {
+          "Name": "Spine",
+          "Id": 2,
+          "ParentId": 1,
+          "Position": {
+            "x": -0.000229219,
+            "y": 0.134412169,
+            "z": 0.000665835047,
+            "normalized": {
+              "x": -0.00170532067,
+              "y": 0.999986231,
+              "z": 0.004953613,
+              "normalized": {
+                "x": -0.00170532078,
+                "y": 0.9999863,
+                "z": 0.0049536135,
+                "magnitude": 1.0,
+                "sqrMagnitude": 1.0
+              },
+              "magnitude": 0.99999994,
+              "sqrMagnitude": 0.9999999
+            },
+            "magnitude": 0.134414017,
+            "sqrMagnitude": 0.0180671271
+          },
+          "Rotation": {
+            "x": 0.00448138267,
+            "y": 0.0226672739,
+            "z": 0.02865815,
+            "w": -0.9993222,
+            "eulerAngles": {
+              "x": 359.412384,
+              "y": 357.418,
+              "z": 356.727936,
+              "normalized": {
+                "x": 0.579863548,
+                "y": 0.5766459,
+                "z": 0.575532556,
+                "magnitude": 1.0,
+                "sqrMagnitude": 0.99999994
+              },
+              "magnitude": 619.8223,
+              "sqrMagnitude": 384179.719
+            }
+          },
+          "TPosition": {
+            "x": -0.000229219,
+            "y": 0.134412169,
+            "z": 0.000665835047,
+            "normalized": {
+              "x": -0.00170532067,
+              "y": 0.999986231,
+              "z": 0.004953613,
+              "normalized": {
+                "x": -0.00170532078,
+                "y": 0.9999863,
+                "z": 0.0049536135,
+                "magnitude": 1.0,
+                "sqrMagnitude": 1.0
+              },
+              "magnitude": 0.99999994,
+              "sqrMagnitude": 0.9999999
+            },
+            "magnitude": 0.134414017,
+            "sqrMagnitude": 0.0180671271
+          },
+          "TRotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": -1.0,
+            "eulerAngles": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 0.0,
+              "sqrMagnitude": 0.0
+            }
+          }
+        }
+      },
+      {
+        "Key": 3,
+        "Value": {
+          "Name": "Spine1",
+          "Id": 3,
+          "ParentId": 2,
+          "Position": {
+            "x": -2.27373686E-16,
+            "y": 0.118435688,
+            "z": 0.0112132384,
+            "normalized": {
+              "x": -1.91126018E-15,
+              "y": 0.99554795,
+              "z": 0.09425636,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 0.118965328,
+            "sqrMagnitude": 0.0141527494
+          },
+          "Rotation": {
+            "x": -0.00126113207,
+            "y": 0.00223668222,
+            "z": -0.0108482484,
+            "w": -0.999937832,
+            "eulerAngles": {
+              "x": 0.147286743,
+              "y": 359.74527,
+              "z": 1.24281883,
+              "normalized": {
+                "x": 0.0004094171,
+                "y": 0.999994,
+                "z": 0.00345469825,
+                "magnitude": 1.0,
+                "sqrMagnitude": 1.00000012
+              },
+              "magnitude": 359.747437,
+              "sqrMagnitude": 129418.227
+            },
+            "normalized": {
+              "x": -0.00126113219,
+              "y": 0.00223668246,
+              "z": -0.0108482493,
+              "w": -0.9999379,
+              "eulerAngles": {
+                "x": 0.147286743,
+                "y": 359.74527,
+                "z": 1.24281883,
+                "normalized": {
+                  "x": 0.0004094171,
+                  "y": 0.999994,
+                  "z": 0.00345469825,
+                  "magnitude": 1.0,
+                  "sqrMagnitude": 1.00000012
+                },
+                "magnitude": 359.747437,
+                "sqrMagnitude": 129418.227
+              }
+            }
+          },
+          "TPosition": {
+            "x": 0.0,
+            "y": 0.118435688,
+            "z": 0.0112132384,
+            "normalized": {
+              "x": 0.0,
+              "y": 0.99554795,
+              "z": 0.09425636,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 0.118965328,
+            "sqrMagnitude": 0.0141527494
+          },
+          "TRotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": -1.0,
+            "eulerAngles": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 0.0,
+              "sqrMagnitude": 0.0
+            }
+          }
+        }
+      },
+      {
+        "Key": 4,
+        "Value": {
+          "Name": "Spine2",
+          "Id": 4,
+          "ParentId": 3,
+          "Position": {
+            "x": 2.27373686E-16,
+            "y": 0.1539664,
+            "z": 0.0168198589,
+            "normalized": {
+              "x": 1.46804076E-15,
+              "y": 0.9940858,
+              "z": 0.108597614,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 0.1548824,
+            "sqrMagnitude": 0.02398856
+          },
+          "Rotation": {
+            "x": 0.006200301,
+            "y": -0.002766517,
+            "z": 0.0109303845,
+            "w": -0.9999172,
+            "eulerAngles": {
+              "x": 359.293,
+              "y": 0.324785769,
+              "z": 358.745422,
+              "normalized": {
+                "x": 0.707645655,
+                "y": 0.000639681937,
+                "z": 0.706567168,
+                "magnitude": 1.0,
+                "sqrMagnitude": 0.99999994
+              },
+              "magnitude": 507.7301,
+              "sqrMagnitude": 257789.844
+            }
+          },
+          "TPosition": {
+            "x": 0.0,
+            "y": 0.1539664,
+            "z": 0.0168198589,
+            "normalized": {
+              "x": 0.0,
+              "y": 0.9940858,
+              "z": 0.108597614,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 0.1548824,
+            "sqrMagnitude": 0.02398856
+          },
+          "TRotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": -1.0,
+            "eulerAngles": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 0.0,
+              "sqrMagnitude": 0.0
+            }
+          }
+        }
+      },
+      {
+        "Key": 5,
+        "Value": {
+          "Name": "LeftShoulder",
+          "Id": 5,
+          "ParentId": 4,
+          "Position": {
+            "x": -0.0316376127,
+            "y": 0.124090888,
+            "z": 0.01654551,
+            "normalized": {
+              "x": -0.245015562,
+              "y": 0.96101433,
+              "z": 0.1281357,
+              "normalized": {
+                "x": -0.245015576,
+                "y": 0.9610144,
+                "z": 0.128135711,
+                "magnitude": 1.0,
+                "sqrMagnitude": 1.0
+              },
+              "magnitude": 0.99999994,
+              "sqrMagnitude": 0.99999994
+            },
+            "magnitude": 0.12912491,
+            "sqrMagnitude": 0.01667324
+          },
+          "Rotation": {
+            "x": -0.07670495,
+            "y": -0.0996416956,
+            "z": -0.04868291,
+            "w": -0.9908672,
+            "eulerAngles": {
+              "x": 8.181374,
+              "y": 11.948885,
+              "z": 6.48319435,
+              "normalized": {
+                "x": 0.51564157,
+                "y": 0.753093839,
+                "z": 0.408611655,
+                "magnitude": 1.0,
+                "sqrMagnitude": 1.0
+              },
+              "magnitude": 15.866396,
+              "sqrMagnitude": 251.742538
+            },
+            "normalized": {
+              "x": -0.07670496,
+              "y": -0.0996417,
+              "z": -0.0486829132,
+              "w": -0.990867257,
+              "eulerAngles": {
+                "x": 8.181374,
+                "y": 11.948885,
+                "z": 6.48319435,
+                "normalized": {
+                  "x": 0.51564157,
+                  "y": 0.753093839,
+                  "z": 0.408611655,
+                  "magnitude": 1.0,
+                  "sqrMagnitude": 1.0
+                },
+                "magnitude": 15.866396,
+                "sqrMagnitude": 251.742538
+              }
+            }
+          },
+          "TPosition": {
+            "x": -0.0316376127,
+            "y": 0.124090888,
+            "z": 0.01654551,
+            "normalized": {
+              "x": -0.245015562,
+              "y": 0.96101433,
+              "z": 0.1281357,
+              "normalized": {
+                "x": -0.245015576,
+                "y": 0.9610144,
+                "z": 0.128135711,
+                "magnitude": 1.0,
+                "sqrMagnitude": 1.0
+              },
+              "magnitude": 0.99999994,
+              "sqrMagnitude": 0.99999994
+            },
+            "magnitude": 0.12912491,
+            "sqrMagnitude": 0.01667324
+          },
+          "TRotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": -1.0,
+            "eulerAngles": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 0.0,
+              "sqrMagnitude": 0.0
+            }
+          }
+        }
+      },
+      {
+        "Key": 6,
+        "Value": {
+          "Name": "LeftArm",
+          "Id": 6,
+          "ParentId": 5,
+          "Position": {
+            "x": -0.163892642,
+            "y": -0.004388696,
+            "z": 0.0,
+            "normalized": {
+              "x": -0.999641657,
+              "y": -0.0267682746,
+              "z": 0.0,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 0.1639514,
+            "sqrMagnitude": 0.02688006
+          },
+          "Rotation": {
+            "x": -0.158929288,
+            "y": -0.578755856,
+            "z": -0.13214618,
+            "w": -0.788872957,
+            "eulerAngles": {
+              "x": 5.611882,
+              "y": 73.68532,
+              "z": 23.22517,
+              "normalized": {
+                "x": 0.07244651,
+                "y": 0.951239467,
+                "z": 0.299824983,
+                "magnitude": 1.0,
+                "sqrMagnitude": 1.0
+              },
+              "magnitude": 77.4624252,
+              "sqrMagnitude": 6000.42773
+            }
+          },
+          "TPosition": {
+            "x": -0.163892642,
+            "y": -0.004388696,
+            "z": 0.0,
+            "normalized": {
+              "x": -0.999641657,
+              "y": -0.0267682746,
+              "z": 0.0,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 0.1639514,
+            "sqrMagnitude": 0.02688006
+          },
+          "TRotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": -1.0,
+            "eulerAngles": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 0.0,
+              "sqrMagnitude": 0.0
+            }
+          }
+        }
+      },
+      {
+        "Key": 7,
+        "Value": {
+          "Name": "LeftForeArm",
+          "Id": 7,
+          "ParentId": 6,
+          "Position": {
+            "x": -0.2553746,
+            "y": 2.27373686E-16,
+            "z": 2.27373686E-16,
+            "normalized": {
+              "x": -1.0,
+              "y": 8.903535E-16,
+              "z": 8.903535E-16,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 0.2553746,
+            "sqrMagnitude": 0.06521619
+          },
+          "Rotation": {
+            "x": -0.06545267,
+            "y": -0.05663669,
+            "z": 0.00524322037,
+            "w": -0.9962333,
+            "eulerAngles": {
+              "x": 7.52773952,
+              "y": 6.49608946,
+              "z": 359.8247,
+              "normalized": {
+                "x": 0.0209125914,
+                "y": 0.0180465952,
+                "z": 0.9996184,
+                "magnitude": 1.0,
+                "sqrMagnitude": 1.0
+              },
+              "magnitude": 359.962067,
+              "sqrMagnitude": 129572.688
+            }
+          },
+          "TPosition": {
+            "x": -0.2553746,
+            "y": 0.0,
+            "z": 0.0,
+            "normalized": {
+              "x": -1.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 0.2553746,
+            "sqrMagnitude": 0.06521619
+          },
+          "TRotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": -1.0,
+            "eulerAngles": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 0.0,
+              "sqrMagnitude": 0.0
+            }
+          }
+        }
+      },
+      {
+        "Key": 8,
+        "Value": {
+          "Name": "LeftHand",
+          "Id": 8,
+          "ParentId": 7,
+          "Position": {
+            "x": -0.248353586,
+            "y": 0.0,
+            "z": 0.0,
+            "normalized": {
+              "x": -1.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 0.248353586,
+            "sqrMagnitude": 0.0616795048
+          },
+          "Rotation": {
+            "x": -0.02267464,
+            "y": -0.08390283,
+            "z": -0.0237548724,
+            "w": -0.9959327,
+            "eulerAngles": {
+              "x": 2.360029,
+              "y": 9.691503,
+              "z": 2.93280959,
+              "normalized": {
+                "x": 0.226992682,
+                "y": 0.932149649,
+                "z": 0.282083958,
+                "magnitude": 1.0,
+                "sqrMagnitude": 1.0
+              },
+              "magnitude": 10.3969383,
+              "sqrMagnitude": 108.096329
+            }
+          },
+          "TPosition": {
+            "x": -0.248353586,
+            "y": 0.0,
+            "z": 0.0,
+            "normalized": {
+              "x": -1.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 0.248353586,
+            "sqrMagnitude": 0.0616795048
+          },
+          "TRotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": -1.0,
+            "eulerAngles": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 0.0,
+              "sqrMagnitude": 0.0
+            }
+          }
+        }
+      },
+      {
+        "Key": 9,
+        "Value": {
+          "Name": "RightShoulder",
+          "Id": 9,
+          "ParentId": 4,
+          "Position": {
+            "x": 0.0300696474,
+            "y": 0.123788759,
+            "z": 0.0181155875,
+            "normalized": {
+              "x": 0.233695537,
+              "y": 0.9620625,
+              "z": 0.140790865,
+              "normalized": {
+                "x": 0.233695552,
+                "y": 0.962062538,
+                "z": 0.14079088,
+                "magnitude": 1.0,
+                "sqrMagnitude": 1.0
+              },
+              "magnitude": 0.99999994,
+              "sqrMagnitude": 0.9999999
+            },
+            "magnitude": 0.128670186,
+            "sqrMagnitude": 0.0165560152
+          },
+          "Rotation": {
+            "x": -0.0245176926,
+            "y": 0.118939191,
+            "z": -0.00566040166,
+            "w": -0.9925826,
+            "eulerAngles": {
+              "x": 2.867026,
+              "y": 346.341644,
+              "z": 0.310050637,
+              "normalized": {
+                "x": 0.008277742,
+                "y": 0.99996537,
+                "z": 0.000895185163,
+                "magnitude": 1.0,
+                "sqrMagnitude": 1.00000012
+              },
+              "magnitude": 346.353638,
+              "sqrMagnitude": 119960.852
+            },
+            "normalized": {
+              "x": -0.0245176945,
+              "y": 0.1189392,
+              "z": -0.005660402,
+              "w": -0.9925827,
+              "eulerAngles": {
+                "x": 2.867026,
+                "y": 346.341644,
+                "z": 0.310050637,
+                "normalized": {
+                  "x": 0.008277742,
+                  "y": 0.99996537,
+                  "z": 0.000895185163,
+                  "magnitude": 1.0,
+                  "sqrMagnitude": 1.00000012
+                },
+                "magnitude": 346.353638,
+                "sqrMagnitude": 119960.852
+              }
+            }
+          },
+          "TPosition": {
+            "x": 0.0300696474,
+            "y": 0.123788759,
+            "z": 0.0181155875,
+            "normalized": {
+              "x": 0.233695537,
+              "y": 0.9620625,
+              "z": 0.140790865,
+              "normalized": {
+                "x": 0.233695552,
+                "y": 0.962062538,
+                "z": 0.14079088,
+                "magnitude": 1.0,
+                "sqrMagnitude": 1.0
+              },
+              "magnitude": 0.99999994,
+              "sqrMagnitude": 0.9999999
+            },
+            "magnitude": 0.128670186,
+            "sqrMagnitude": 0.0165560152
+          },
+          "TRotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": -1.0,
+            "eulerAngles": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 0.0,
+              "sqrMagnitude": 0.0
+            }
+          }
+        }
+      },
+      {
+        "Key": 10,
+        "Value": {
+          "Name": "RightArm",
+          "Id": 10,
+          "ParentId": 9,
+          "Position": {
+            "x": 0.144746721,
+            "y": 0.004388696,
+            "z": -8.526513E-17,
+            "normalized": {
+              "x": 0.9995407,
+              "y": 0.0303059034,
+              "z": -5.887937E-16,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 0.14481324,
+            "sqrMagnitude": 0.0209708735
+          },
+          "Rotation": {
+            "x": -0.06685894,
+            "y": 0.390044719,
+            "z": 0.348101556,
+            "w": -0.849835455,
+            "eulerAngles": {
+              "x": 350.914276,
+              "y": 314.0684,
+              "z": 319.307861,
+              "normalized": {
+                "x": 0.6167436,
+                "y": 0.551985741,
+                "z": 0.5611943,
+                "magnitude": 1.0,
+                "sqrMagnitude": 1.0
+              },
+              "magnitude": 568.9792,
+              "sqrMagnitude": 323737.281
+            }
+          },
+          "TPosition": {
+            "x": 0.144746721,
+            "y": 0.004388696,
+            "z": 0.0,
+            "normalized": {
+              "x": 0.9995407,
+              "y": 0.0303059034,
+              "z": 0.0,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 0.14481324,
+            "sqrMagnitude": 0.0209708735
+          },
+          "TRotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": -1.0,
+            "eulerAngles": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 0.0,
+              "sqrMagnitude": 0.0
+            }
+          }
+        }
+      },
+      {
+        "Key": 11,
+        "Value": {
+          "Name": "RightForeArm",
+          "Id": 11,
+          "ParentId": 10,
+          "Position": {
+            "x": 0.267741978,
+            "y": 0.0,
+            "z": 0.0,
+            "normalized": {
+              "x": 1.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 0.267741978,
+            "sqrMagnitude": 0.07168577
+          },
+          "Rotation": {
+            "x": -0.157025337,
+            "y": 0.14453733,
+            "z": -0.0487640724,
+            "w": -0.9757428,
+            "eulerAngles": {
+              "x": 18.69493,
+              "y": 343.643921,
+              "z": 3.01185346,
+              "normalized": {
+                "x": 0.05431963,
+                "y": 0.9984852,
+                "z": 0.008751184,
+                "normalized": {
+                  "x": 0.054319635,
+                  "y": 0.998485267,
+                  "z": 0.008751185,
+                  "magnitude": 1.0,
+                  "sqrMagnitude": 1.0
+                },
+                "magnitude": 0.99999994,
+                "sqrMagnitude": 0.99999994
+              },
+              "magnitude": 344.165253,
+              "sqrMagnitude": 118449.719
+            }
+          },
+          "TPosition": {
+            "x": 0.267741978,
+            "y": 0.0,
+            "z": 0.0,
+            "normalized": {
+              "x": 1.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 0.267741978,
+            "sqrMagnitude": 0.07168577
+          },
+          "TRotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": -1.0,
+            "eulerAngles": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 0.0,
+              "sqrMagnitude": 0.0
+            }
+          }
+        }
+      },
+      {
+        "Key": 12,
+        "Value": {
+          "Name": "RightHand",
+          "Id": 12,
+          "ParentId": 11,
+          "Position": {
+            "x": 0.254306167,
+            "y": -1.13686843E-16,
+            "z": 0.0,
+            "normalized": {
+              "x": 1.0,
+              "y": -4.47047155E-16,
+              "z": 0.0,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 0.254306167,
+            "sqrMagnitude": 0.06467163
+          },
+          "Rotation": {
+            "x": -0.0193514973,
+            "y": 0.152174369,
+            "z": -0.03687811,
+            "w": -0.9874758,
+            "eulerAngles": {
+              "x": 2.8339777,
+              "y": 342.573853,
+              "z": 3.843122,
+              "normalized": {
+                "x": 0.0082718,
+                "y": 0.9999029,
+                "z": 0.0112172859,
+                "magnitude": 1.0,
+                "sqrMagnitude": 1.00000012
+              },
+              "magnitude": 342.607117,
+              "sqrMagnitude": 117379.648
+            }
+          },
+          "TPosition": {
+            "x": 0.254306167,
+            "y": 0.0,
+            "z": 0.0,
+            "normalized": {
+              "x": 1.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 0.254306167,
+            "sqrMagnitude": 0.06467163
+          },
+          "TRotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": -1.0,
+            "eulerAngles": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 0.0,
+              "sqrMagnitude": 0.0
+            }
+          }
+        }
+      },
+      {
+        "Key": 13,
+        "Value": {
+          "Name": "Neck",
+          "Id": 13,
+          "ParentId": 4,
+          "Position": {
+            "x": 2.27373686E-16,
+            "y": 0.1539664,
+            "z": 0.0168198589,
+            "normalized": {
+              "x": 1.46804076E-15,
+              "y": 0.9940858,
+              "z": 0.108597614,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 0.1548824,
+            "sqrMagnitude": 0.02398856
+          },
+          "Rotation": {
+            "x": -0.0480864272,
+            "y": 0.0242004916,
+            "z": -0.0499912277,
+            "w": -0.9972978,
+            "eulerAngles": {
+              "x": 5.64316225,
+              "y": 357.496857,
+              "z": 5.615902,
+              "normalized": {
+                "x": 0.0157812964,
+                "y": 0.999752164,
+                "z": 0.0157050621,
+                "magnitude": 1.0,
+                "sqrMagnitude": 1.00000012
+              },
+              "magnitude": 357.58548,
+              "sqrMagnitude": 127867.383
+            }
+          },
+          "TPosition": {
+            "x": 0.0,
+            "y": 0.1539664,
+            "z": 0.0168198589,
+            "normalized": {
+              "x": 0.0,
+              "y": 0.9940858,
+              "z": 0.108597614,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 0.1548824,
+            "sqrMagnitude": 0.02398856
+          },
+          "TRotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": -1.0,
+            "eulerAngles": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 0.0,
+              "sqrMagnitude": 0.0
+            }
+          }
+        }
+      },
+      {
+        "Key": 14,
+        "Value": {
+          "Name": "Head",
+          "Id": 14,
+          "ParentId": 13,
+          "Position": {
+            "x": 0.005832924,
+            "y": 0.105543181,
+            "z": 0.01740256,
+            "normalized": {
+              "x": 0.054448586,
+              "y": 0.985213757,
+              "z": 0.162447646,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 0.10712719,
+            "sqrMagnitude": 0.0114762355
+          },
+          "Rotation": {
+            "x": -0.046517618,
+            "y": -0.0478787981,
+            "z": 0.02333305,
+            "w": -0.997496545,
+            "eulerAngles": {
+              "x": 5.45342875,
+              "y": 5.380617,
+              "z": 357.576447,
+              "normalized": {
+                "x": 0.0152475853,
+                "y": 0.0150440075,
+                "z": 0.9997706,
+                "magnitude": 1.0,
+                "sqrMagnitude": 1.0
+              },
+              "magnitude": 357.6585,
+              "sqrMagnitude": 127919.609
+            }
+          },
+          "TPosition": {
+            "x": 0.005832924,
+            "y": 0.105543181,
+            "z": 0.01740256,
+            "normalized": {
+              "x": 0.054448586,
+              "y": 0.985213757,
+              "z": 0.162447646,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 0.10712719,
+            "sqrMagnitude": 0.0114762355
+          },
+          "TRotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": -1.0,
+            "eulerAngles": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 0.0,
+              "sqrMagnitude": 0.0
+            }
+          }
+        }
+      },
+      {
+        "Key": 15,
+        "Value": {
+          "Name": "LeftUpLeg",
+          "Id": 15,
+          "ParentId": 1,
+          "Position": {
+            "x": -0.100470617,
+            "y": -0.0259915553,
+            "z": 0.05359349,
+            "normalized": {
+              "x": -0.860195935,
+              "y": -0.222531036,
+              "z": 0.4588496,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.00000012
+            },
+            "magnitude": 0.11679969,
+            "sqrMagnitude": 0.0136421677
+          },
+          "Rotation": {
+            "x": 0.140057445,
+            "y": 0.0623275861,
+            "z": 0.0513090566,
+            "w": -0.9868468,
+            "eulerAngles": {
+              "x": 343.571045,
+              "y": 353.496277,
+              "z": 354.987274,
+              "normalized": {
+                "x": 0.5655794,
+                "y": 0.5819181,
+                "z": 0.5843725,
+                "magnitude": 1.0,
+                "sqrMagnitude": 1.0
+              },
+              "magnitude": 607.4674,
+              "sqrMagnitude": 369016.656
+            }
+          },
+          "TPosition": {
+            "x": -0.100470617,
+            "y": -0.0259915553,
+            "z": 0.05359349,
+            "normalized": {
+              "x": -0.860195935,
+              "y": -0.222531036,
+              "z": 0.4588496,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.00000012
+            },
+            "magnitude": 0.11679969,
+            "sqrMagnitude": 0.0136421677
+          },
+          "TRotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": -1.0,
+            "eulerAngles": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 0.0,
+              "sqrMagnitude": 0.0
+            }
+          }
+        }
+      },
+      {
+        "Key": 16,
+        "Value": {
+          "Name": "LeftLeg",
+          "Id": 16,
+          "ParentId": 15,
+          "Position": {
+            "x": -2.27373686E-16,
+            "y": -0.387621045,
+            "z": -0.00338271679,
+            "normalized": {
+              "x": -5.86565234E-16,
+              "y": -0.999962,
+              "z": -0.0087265335,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.00000012
+            },
+            "magnitude": 0.3876358,
+            "sqrMagnitude": 0.150261521
+          },
+          "Rotation": {
+            "x": -0.132567123,
+            "y": 0.0142254727,
+            "z": -0.077748,
+            "w": -0.9880176,
+            "eulerAngles": {
+              "x": 15.3176012,
+              "y": 359.554657,
+              "z": 8.938884,
+              "normalized": {
+                "x": 0.0425498635,
+                "y": 0.998785734,
+                "z": 0.0248308,
+                "magnitude": 1.0,
+                "sqrMagnitude": 1.0
+              },
+              "magnitude": 359.9918,
+              "sqrMagnitude": 129594.086
+            }
+          },
+          "TPosition": {
+            "x": 0.0,
+            "y": -0.387621045,
+            "z": -0.00338271679,
+            "normalized": {
+              "x": 0.0,
+              "y": -0.999962,
+              "z": -0.0087265335,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.00000012
+            },
+            "magnitude": 0.3876358,
+            "sqrMagnitude": 0.150261521
+          },
+          "TRotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": -1.0,
+            "eulerAngles": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 0.0,
+              "sqrMagnitude": 0.0
+            }
+          }
+        }
+      },
+      {
+        "Key": 17,
+        "Value": {
+          "Name": "LeftFoot",
+          "Id": 17,
+          "ParentId": 16,
+          "Position": {
+            "x": 2.27373686E-16,
+            "y": -0.446042448,
+            "z": -0.0233760923,
+            "normalized": {
+              "x": 5.090594E-16,
+              "y": -0.99862957,
+              "z": -0.0523359552,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.00000012
+            },
+            "magnitude": 0.446654558,
+            "sqrMagnitude": 0.1995003
+          },
+          "Rotation": {
+            "x": -0.1277062,
+            "y": -0.0137211336,
+            "z": 0.0186913367,
+            "w": -0.991540968,
+            "eulerAngles": {
+              "x": 14.7004042,
+              "y": 1.32911849,
+              "z": 358.011566,
+              "normalized": {
+                "x": 0.0410264023,
+                "y": 0.00370935048,
+                "z": 0.99915123,
+                "magnitude": 1.0,
+                "sqrMagnitude": 1.00000012
+              },
+              "magnitude": 358.3157,
+              "sqrMagnitude": 128390.148
+            }
+          },
+          "TPosition": {
+            "x": 0.0,
+            "y": -0.446042448,
+            "z": -0.0233760923,
+            "normalized": {
+              "x": 0.0,
+              "y": -0.99862957,
+              "z": -0.0523359552,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.00000012
+            },
+            "magnitude": 0.446654558,
+            "sqrMagnitude": 0.1995003
+          },
+          "TRotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": -1.0,
+            "eulerAngles": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 0.0,
+              "sqrMagnitude": 0.0
+            }
+          }
+        }
+      },
+      {
+        "Key": 18,
+        "Value": {
+          "Name": "LeftToeBase",
+          "Id": 18,
+          "ParentId": 17,
+          "Position": {
+            "x": 2.27373686E-16,
+            "y": -0.06377827,
+            "z": 0.118218124,
+            "normalized": {
+              "x": 1.69271371E-15,
+              "y": -0.4748058,
+              "z": 0.8800906,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 0.134324953,
+            "sqrMagnitude": 0.0180431921
+          },
+          "Rotation": {
+            "x": 0.03541236,
+            "y": 0.002458547,
+            "z": 0.0194303058,
+            "w": -0.999180853,
+            "eulerAngles": {
+              "x": 355.9365,
+              "y": 359.796844,
+              "z": 357.7791,
+              "normalized": {
+                "x": 0.5742776,
+                "y": 0.580505967,
+                "z": 0.5772505,
+                "magnitude": 1.0,
+                "sqrMagnitude": 1.0
+              },
+              "magnitude": 619.7987,
+              "sqrMagnitude": 384150.438
+            }
+          },
+          "TPosition": {
+            "x": 0.0,
+            "y": -0.06377827,
+            "z": 0.118218124,
+            "normalized": {
+              "x": 0.0,
+              "y": -0.4748058,
+              "z": 0.8800906,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 0.134324953,
+            "sqrMagnitude": 0.0180431921
+          },
+          "TRotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": -1.0,
+            "eulerAngles": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 0.0,
+              "sqrMagnitude": 0.0
+            }
+          }
+        }
+      },
+      {
+        "Key": 19,
+        "Value": {
+          "Name": "RightUpLeg",
+          "Id": 19,
+          "ParentId": 1,
+          "Position": {
+            "x": 0.100470617,
+            "y": -0.0259915553,
+            "z": 0.05359349,
+            "normalized": {
+              "x": 0.860195935,
+              "y": -0.222531036,
+              "z": 0.4588496,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.00000012
+            },
+            "magnitude": 0.11679969,
+            "sqrMagnitude": 0.0136421677
+          },
+          "Rotation": {
+            "x": 0.133121356,
+            "y": -0.148349673,
+            "z": -0.0224679559,
+            "w": -0.9796766,
+            "eulerAngles": {
+              "x": 344.484558,
+              "y": 17.184782,
+              "z": 0.2691079,
+              "normalized": {
+                "x": 0.9987578,
+                "y": 0.0498235226,
+                "z": 0.0007802196,
+                "magnitude": 1.0,
+                "sqrMagnitude": 1.00000012
+              },
+              "magnitude": 344.913025,
+              "sqrMagnitude": 118965.0
+            }
+          },
+          "TPosition": {
+            "x": 0.100470617,
+            "y": -0.0259915553,
+            "z": 0.05359349,
+            "normalized": {
+              "x": 0.860195935,
+              "y": -0.222531036,
+              "z": 0.4588496,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.00000012
+            },
+            "magnitude": 0.11679969,
+            "sqrMagnitude": 0.0136421677
+          },
+          "TRotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": -1.0,
+            "eulerAngles": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 0.0,
+              "sqrMagnitude": 0.0
+            }
+          }
+        }
+      },
+      {
+        "Key": 20,
+        "Value": {
+          "Name": "RightLeg",
+          "Id": 20,
+          "ParentId": 19,
+          "Position": {
+            "x": 0.0,
+            "y": -0.40565595,
+            "z": -0.00354010612,
+            "normalized": {
+              "x": 0.0,
+              "y": -0.999962,
+              "z": -0.008726536,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.00000012
+            },
+            "magnitude": 0.4056714,
+            "sqrMagnitude": 0.164569288
+          },
+          "Rotation": {
+            "x": -0.144023955,
+            "y": 0.06283954,
+            "z": 0.047493685,
+            "w": -0.9864343,
+            "eulerAngles": {
+              "x": 16.1511,
+              "y": 351.760529,
+              "z": 353.315979,
+              "normalized": {
+                "x": 0.032378152,
+                "y": 0.7051752,
+                "z": 0.708293438,
+                "magnitude": 1.0,
+                "sqrMagnitude": 1.0
+              },
+              "magnitude": 498.827118,
+              "sqrMagnitude": 248828.516
+            },
+            "normalized": {
+              "x": -0.14402397,
+              "y": 0.0628395453,
+              "z": 0.04749369,
+              "w": -0.98643434,
+              "eulerAngles": {
+                "x": 16.1511,
+                "y": 351.760529,
+                "z": 353.315979,
+                "normalized": {
+                  "x": 0.032378152,
+                  "y": 0.7051752,
+                  "z": 0.708293438,
+                  "magnitude": 1.0,
+                  "sqrMagnitude": 1.0
+                },
+                "magnitude": 498.827118,
+                "sqrMagnitude": 248828.516
+              }
+            }
+          },
+          "TPosition": {
+            "x": 0.0,
+            "y": -0.40565595,
+            "z": -0.00354010612,
+            "normalized": {
+              "x": 0.0,
+              "y": -0.999962,
+              "z": -0.008726536,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.00000012
+            },
+            "magnitude": 0.4056714,
+            "sqrMagnitude": 0.164569288
+          },
+          "TRotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": -1.0,
+            "eulerAngles": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 0.0,
+              "sqrMagnitude": 0.0
+            }
+          }
+        }
+      },
+      {
+        "Key": 21,
+        "Value": {
+          "Name": "RightFoot",
+          "Id": 21,
+          "ParentId": 20,
+          "Position": {
+            "x": 0.0,
+            "y": -0.443628758,
+            "z": -0.0232495982,
+            "normalized": {
+              "x": 0.0,
+              "y": -0.99862957,
+              "z": -0.05233596,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.00000012
+            },
+            "magnitude": 0.44423756,
+            "sqrMagnitude": 0.197347015
+          },
+          "Rotation": {
+            "x": -0.136507988,
+            "y": -0.0427287258,
+            "z": 0.00177952962,
+            "w": -0.989715457,
+            "eulerAngles": {
+              "x": 15.6857023,
+              "y": 5.01091576,
+              "z": 0.484622478,
+              "normalized": {
+                "x": 0.9521617,
+                "y": 0.304175228,
+                "z": 0.0294178072,
+                "normalized": {
+                  "x": 0.9521618,
+                  "y": 0.304175258,
+                  "z": 0.02941781,
+                  "magnitude": 1.0,
+                  "sqrMagnitude": 1.00000012
+                },
+                "magnitude": 0.99999994,
+                "sqrMagnitude": 0.99999994
+              },
+              "magnitude": 16.47378,
+              "sqrMagnitude": 271.3854
+            }
+          },
+          "TPosition": {
+            "x": 0.0,
+            "y": -0.443628758,
+            "z": -0.0232495982,
+            "normalized": {
+              "x": 0.0,
+              "y": -0.99862957,
+              "z": -0.05233596,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.00000012
+            },
+            "magnitude": 0.44423756,
+            "sqrMagnitude": 0.197347015
+          },
+          "TRotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": -1.0,
+            "eulerAngles": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 0.0,
+              "sqrMagnitude": 0.0
+            }
+          }
+        }
+      },
+      {
+        "Key": 22,
+        "Value": {
+          "Name": "RightToeBase",
+          "Id": 22,
+          "ParentId": 21,
+          "Position": {
+            "x": -1.13686843E-16,
+            "y": -0.0633724,
+            "z": 0.118030146,
+            "normalized": {
+              "x": -8.486178E-16,
+              "y": -0.473044634,
+              "z": 0.8810385,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 0.133967072,
+            "sqrMagnitude": 0.0179471765
+          },
+          "Rotation": {
+            "x": 0.06413639,
+            "y": 0.0038640534,
+            "z": -0.00690488936,
+            "w": -0.9979098,
+            "eulerAngles": {
+              "x": 352.648773,
+              "y": 359.5033,
+              "z": 0.82479465,
+              "normalized": {
+                "x": 0.700267434,
+                "y": 0.713878751,
+                "z": 0.00163782458,
+                "magnitude": 1.0,
+                "sqrMagnitude": 1.0
+              },
+              "magnitude": 503.591553,
+              "sqrMagnitude": 253604.453
+            }
+          },
+          "TPosition": {
+            "x": 0.0,
+            "y": -0.0633724,
+            "z": 0.118030146,
+            "normalized": {
+              "x": 0.0,
+              "y": -0.473044634,
+              "z": 0.8810385,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 0.133967072,
+            "sqrMagnitude": 0.0179471765
+          },
+          "TRotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": -1.0,
+            "eulerAngles": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "magnitude": 0.0,
+              "sqrMagnitude": 0.0
+            }
+          }
+        }
+      }
+    ]
+  ]
+}

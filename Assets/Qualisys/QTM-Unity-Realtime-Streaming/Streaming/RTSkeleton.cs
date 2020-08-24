@@ -106,6 +106,7 @@ namespace QualisysRealTime.Unity {
                 Debug.Log("####RECORDING####");
                 recordCount++;
                 Rec.records.Add(skeleton._seg);
+                OnRecordStop();
             }
         }
 

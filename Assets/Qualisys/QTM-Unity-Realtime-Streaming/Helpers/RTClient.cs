@@ -449,7 +449,7 @@ namespace QualisysRealTime.Unity {
             bool getStatus = mProtocol.GetSkeletonSettings();
             if (!getStatus)
                 return false;
-
+            Debug.Log("get skeleton setting ");
             mSkeletons.Clear();
             var skeletonSettings = mProtocol.SkeletonSettingsCollection;
             foreach (var settingSkeleton in skeletonSettings.SettingSkeletonList) {
@@ -458,6 +458,7 @@ namespace QualisysRealTime.Unity {
                 foreach (var settingSegment in settingSkeleton.SettingSegmentList) {
                     var segment = new Segment();
                     segment.Name = settingSegment.Name;
+                    Debug.Log("seg : " + segment.Name);
                     segment.Id = settingSegment.Id;
                     segment.ParentId = settingSegment.ParentId;
 
@@ -467,6 +468,7 @@ namespace QualisysRealTime.Unity {
 
                     skeleton.Segments.Add(segment.Id, segment);
                 }
+                Debug.Log("------");
                 mSkeletons.Add(skeleton);
             }
             return true;

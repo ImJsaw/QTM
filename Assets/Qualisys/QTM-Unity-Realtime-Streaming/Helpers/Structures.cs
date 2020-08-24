@@ -56,6 +56,16 @@ namespace QualisysRealTime.Unity {
 
     [Serializable]
     public class Segment {
+        public Segment(string name, uint id, uint parent, Vector3 tPos) {
+            Name = name;
+            Id = id;
+            ParentId = parent;
+            _tpos = new SerializablePos(tPos);
+        }
+
+        public Segment() {
+        }
+
         public string Name;
         public uint Id;
         public uint ParentId;
