@@ -9,7 +9,11 @@ public class RTSkeletonFromMarker : MonoBehaviour {
     public bool isTest = false;
     private bool isInit = false;
     public string SkeletonName = "SR";
-    public Transform test = null;
+    public Transform test1 = null;
+    public Transform test2 = null;
+    public Transform test3 = null;
+    [SerializeField]
+    public int id = 0;
 
     private Avatar mSourceAvatar;
     public Avatar DestinationAvatar;
@@ -26,55 +30,242 @@ public class RTSkeletonFromMarker : MonoBehaviour {
     private mSkeleton mQtmSkeletonCache;
     private mSkeleton skeleton = null;
 
-    private mSkeleton loadSk = null;
+    //marker
+    private List<LabeledMarker> markerData = null;
+    private Dictionary<string, Vector3> dotData = new Dictionary<string, Vector3>();
 
-    private mSkeleton getSkeleton(string SkeletonName) {
-        if (isTest)
-            return getSkFromMk();
-        Skeleton sk = rtClient.GetSkeleton(SkeletonName);
-        if (sk == null)
-            return null;
-        return new mSkeleton(sk);
-    }
-
-    void FixedUpdate() {
-        skeleton = null;
+    void Update() {
+        //get marker data
         if (rtClient == null)
             rtClient = RTClient.GetInstance();
-        skeleton = getSkeleton(SkeletonName);
-        updateSkeleton();
-    }
-
-    private void loadSke() {
-        if (loadSk == null) {
-            loadSk = new mSkeleton();
-            loadSk.Name = "SR";
-            loadSk._seg = Utils.load<qtmRecord>("Ske.txt").records[0];
+        markerData = rtClient.Markers;
+        if (markerData == null || markerData.Count == 0)
+            return;
+        //update marker data to local dictionary
+        for (int i = 0; i < markerData.Count; i++) {
+            if (!float.IsNaN(markerData[i].Position.sqrMagnitude)) {
+                if (dotData.ContainsKey(markerData[i].Name)) {
+                    dotData[markerData[i].Name] = markerData[i].Position;
+                } else {
+                    dotData.Add(markerData[i].Name, markerData[i].Position);
+                }
+                //Debug.Log("Update marker" + markerData[i].Name);
+            }
+        }
+        //update skeleton from marker data
+        if (skeleton == null) {
+            skeleton = new mSkeleton();
+            skeleton.Name = "SR";
+            skeleton._seg = Utils.load<qtmRecord>("Ske.txt").records[0];
             Debug.Log("Load sk");
         }
-    }
-
-    private mSkeleton getSkFromMk() {
-        loadSke();
-        setSkeletonPosition(loadSk);
-        setSkeletonRotation(loadSk);
-        return loadSk;
+        setSkeletonPosition(skeleton);
+        setSkeletonRotation(skeleton);
+        //apply skeleton to model
+        updateModel();
     }
 
     private void setSkeletonPosition(mSkeleton sk) {
         foreach (var segment in sk._seg) {
+            List<Vector3> toAvg = new List<Vector3>();
             switch (segment.Value.Name) {
                 case "Hips":
-                    segment.Value.Position = new Vector3(-test.position.z, test.position.y, test.position.x);
+                    if (getDotData("LPSI") != Vector3.zero)
+                        toAvg.Add(getDotData("LPSI"));
+                    if (getDotData("RPSI") != Vector3.zero)
+                        toAvg.Add(getDotData("RPSI"));
                     break;
+                case "RightUpLeg":
+                    if (getDotData("RTRO") != Vector3.zero)
+                        toAvg.Add(getDotData("RTRO"));
+                    break;
+                case "RightLeg":
+                    if (getDotData("RLFC") != Vector3.zero)
+                        toAvg.Add(getDotData("RLFC"));
+                    if (getDotData("RMFC") != Vector3.zero)
+                        toAvg.Add(getDotData("RMFC"));
+                    break;
+                case "RightFoot":
+                    if (getDotData("RHEE") != Vector3.zero)
+                        toAvg.Add(getDotData("RHEE"));
+                    break;
+                case "LeftUpLeg":
+                    if (getDotData("LTRO") != Vector3.zero)
+                        toAvg.Add(getDotData("LTRO"));
+                    break;
+                case "LeftLeg":
+                    if (getDotData("LLFC") != Vector3.zero)
+                        toAvg.Add(getDotData("LLFC"));
+                    if (getDotData("LMFC") != Vector3.zero)
+                        toAvg.Add(getDotData("LMFC"));
+                    break;
+                case "LeftFoot":
+                    if (getDotData("LHEE") != Vector3.zero)
+                        toAvg.Add(getDotData("LHEE"));
+                    break;
+                case "RightShoulder":
+                    if (getDotData("RSAP") != Vector3.zero)
+                        toAvg.Add(getDotData("RSAP"));
+                    break;
+                case "RightForeArm":
+                    if (getDotData("RLHE") != Vector3.zero)
+                        toAvg.Add(getDotData("RLHE"));
+                    if (getDotData("RMHE") != Vector3.zero)
+                        toAvg.Add(getDotData("RMHE"));
+                    break;
+                case "RightHand":
+                    if (getDotData("RUS") != Vector3.zero)
+                        toAvg.Add(getDotData("RUS"));
+                    if (getDotData("RUS") != Vector3.zero)
+                        segment.Value.Position = getDotData("RUS");
+                    break;
+                default:
+                    break;
+            }
+            if (Utils.GetMeanVector(toAvg) != Vector3.zero) {
+                segment.Value.Position = Utils.GetMeanVector(toAvg);
+            }
+
+        }
+    }
+
+    private Vector3 getDotData(string name) {
+        if (dotData.ContainsKey(name))
+            return dotData[name];
+        Debug.Log("[marker]can't find " + name);
+        return Vector3.zero;
+    }
+    
+    private void setSkeletonRotation(mSkeleton sk) {
+        foreach (var segment in sk._seg) {
+            switch (segment.Value.Name) {
+                case "Hips":
+                    if (getDotData("LPSI") != Vector3.zero && getDotData("RPSI") != Vector3.zero && getDotData("T8") != Vector3.zero) {
+                        Vector3 v = getDotData("LPSI") - getDotData("RPSI");
+                        Quaternion quat = Quaternion.LookRotation(v, getDotData("T8") - (getDotData("LPSI") + getDotData("RPSI")) / 2);
+                        segment.Value.Rotation = quat * Quaternion.LookRotation(Vector3.right, Vector3.up);
+                    }
+                    break;
+                case "RightUpLeg":
+                    if (getDotData("RMFC") != Vector3.zero && getDotData("RSHA") != Vector3.zero && getDotData("RPSI") != Vector3.zero) {
+                        Vector3 v = getDotData("RMFC") - getDotData("RLFC");
+                        Quaternion quat = Quaternion.LookRotation(v, getDotData("RMFC")  - getDotData("RPSI") );
+                        segment.Value.Rotation =  quat * Quaternion.LookRotation(Vector3.left, Vector3.down);
+                    }
+                    break;
+                case "RightLeg":
+                    if (getDotData("RHEE") != Vector3.zero && getDotData("RMFC") != Vector3.zero && getDotData("RSHA") != Vector3.zero) {
+                        Vector3 v = getDotData("RMFC") - getDotData("RLFC");
+                        Quaternion quat = Quaternion.LookRotation(v, getDotData("RHEE") - getDotData("RLFC"));
+                        segment.Value.Rotation = quat * Quaternion.LookRotation(Vector3.left, Vector3.down);
+                    }
+                    break;
+                case "RightFoot":
+                    if (getDotData("RHEE") != Vector3.zero && getDotData("RTOE") != Vector3.zero && getDotData("RFOO") != Vector3.zero) {
+                        Vector3 v = getDotData("RFOO") - getDotData("RTOE");
+                        Quaternion quat = Quaternion.LookRotation(v, (getDotData("RTOE") + getDotData("RFOO")) / 2 - getDotData("RHEE"));
+                        segment.Value.Rotation = quat * Quaternion.LookRotation(Vector3.up, Vector3.left);
+                    }
+                    break;
+                case "LeftUpLeg":
+                    if (getDotData("LMFC") != Vector3.zero && getDotData("LSHA") != Vector3.zero && getDotData("LPSI") != Vector3.zero) {
+                        Vector3 v = getDotData("LMFC") - getDotData("LLFC");
+                        Quaternion quat = Quaternion.LookRotation(v, getDotData("LMFC") - getDotData("LPSI"));
+                        segment.Value.Rotation = quat * Quaternion.LookRotation(Vector3.right, Vector3.down);
+                    }
+                    break;
+                case "LeftLeg":
+                    if (getDotData("LHEE") != Vector3.zero && getDotData("LMFC") != Vector3.zero && getDotData("LSHA") != Vector3.zero) {
+                        Vector3 v = getDotData("LMFC") - getDotData("LLFC");
+                        Quaternion quat = Quaternion.LookRotation(v, getDotData("LHEE") - getDotData("LLFC"));
+                        segment.Value.Rotation = quat * Quaternion.LookRotation(Vector3.right, Vector3.down);
+                    }
+                    break;
+                case "LeftFoot":
+                    if (getDotData("LHEE") != Vector3.zero && getDotData("LTOE") != Vector3.zero && getDotData("LFOO") != Vector3.zero) {
+                        Vector3 v = getDotData("LFOO") - getDotData("LTOE");
+                        Quaternion quat = Quaternion.LookRotation(v, (getDotData("LTOE") + getDotData("LFOO")) / 2 - getDotData("LHEE"));
+                        segment.Value.Rotation = quat * Quaternion.LookRotation(Vector3.up, Vector3.right);
+                    }
+                    break;
+                /*
+                case "RightShoulder":
+                    if (getDotData("RSAP") != Vector3.zero && getDotData("RLHE") != Vector3.zero && getDotData("RMHE") != Vector3.zero) {
+                        Vector3 v = getDotData("RMHE") - getDotData("RLHE");
+                        Quaternion quat = Quaternion.LookRotation(v, getDotData("RSAP") - ((getDotData("RLHE") + getDotData("RMHE")) / 2));
+                        segment.Value.Rotation = Quaternion.LookRotation(Vector3.left, Vector3.up) * quat * dynQuat();//Quaternion.LookRotation(Vector3.left, Vector3.down);
+                    }
+                    break;
+                case "RightForeArm":
+                    if (getDotData("RUS") != Vector3.zero && getDotData("RLHE") != Vector3.zero && getDotData("RMHE") != Vector3.zero) {
+                        Vector3 v = getDotData("RMHE") - getDotData("RLHE");
+                        Quaternion quat = Quaternion.LookRotation((getDotData("RLHE") + getDotData("RMHE")) / 2 - getDotData("RUS"), v);
+                        segment.Value.Rotation = Quaternion.LookRotation(Vector3.left, Vector3.up) * quat * dynQuat();
+                    }
+                    break;
+                 */
+                case "RightHand":
+
+                    break;
+
                 default:
                     break;
             }
         }
     }
 
-    private void setSkeletonRotation(mSkeleton sk) {
+    private Quaternion dynQuat() {
+        switch (id) {
+            case 0:
+                return Quaternion.LookRotation(Vector3.right, Vector3.up);
+            case 1:
+                return Quaternion.LookRotation(Vector3.left, Vector3.up);
+            case 2:
+                return Quaternion.LookRotation(Vector3.back, Vector3.up);
+            case 3:
+                return Quaternion.LookRotation(Vector3.right, Vector3.down);
+            case 4:
+                return Quaternion.LookRotation(Vector3.left, Vector3.down);
+            case 5:
+                return Quaternion.LookRotation(Vector3.forward, Vector3.down);
+            case 6:
+                return Quaternion.LookRotation(Vector3.back, Vector3.down);
+            case 7:
+                return Quaternion.LookRotation(Vector3.up, Vector3.forward);
+            case 8:
+                return Quaternion.LookRotation(Vector3.down, Vector3.forward);
+            case 9:
+                return Quaternion.LookRotation(Vector3.left, Vector3.forward);
+            case 10:
+                return Quaternion.LookRotation(Vector3.right, Vector3.forward);
+            case 11:
+                return Quaternion.LookRotation(Vector3.up, Vector3.back);
+            case 12:
+                return Quaternion.LookRotation(Vector3.down, Vector3.back);
+            case 13:
+                return Quaternion.LookRotation(Vector3.left, Vector3.back);
+            case 14:
+                return Quaternion.LookRotation(Vector3.right, Vector3.back);
+            case 15:
+                return Quaternion.LookRotation(Vector3.up, Vector3.left);
+            case 16:
+                return Quaternion.LookRotation(Vector3.down, Vector3.left);
+            case 17:
+                return Quaternion.LookRotation(Vector3.back, Vector3.left);
+            case 18:
+                return Quaternion.LookRotation(Vector3.forward, Vector3.left);
+            case 19:
+                return Quaternion.LookRotation(Vector3.up, Vector3.right);
+            case 20:
+                return Quaternion.LookRotation(Vector3.down, Vector3.right);
+            case 21:
+                return Quaternion.LookRotation(Vector3.back, Vector3.right);
+            case 22:
+                return Quaternion.LookRotation(Vector3.forward, Vector3.right);
+            default:
+                return Quaternion.identity;
 
+        }
     }
 
     private void genSeg(mSkeleton sk) {
@@ -145,10 +336,10 @@ public class RTSkeletonFromMarker : MonoBehaviour {
 
         seg = new Segment("RightToeBase", 22, 21, new Vector3(0, -0.06377827f, 0.118218124f));
         sk._seg.Add(new KeyValuePair<uint, Segment>(22, seg));
-        
+
     }
 
-    private void updateSkeleton() {
+    private void updateModel() {
         //update local skeleton data
         if (mQtmSkeletonCache != skeleton) {
             //Debug.Log("Flush skeleton cache");
@@ -165,8 +356,8 @@ public class RTSkeletonFromMarker : MonoBehaviour {
         foreach (var segment in mQtmSkeletonCache.Segments.ToList()) {
             GameObject gameObject;
             if (mQTmSegmentIdToGameObject.TryGetValue(segment.Key, out gameObject)) {
-                gameObject.transform.localPosition = segment.Value.Position;
-                gameObject.transform.localRotation = segment.Value.Rotation;
+                gameObject.transform.position = segment.Value.Position;
+                gameObject.transform.rotation = segment.Value.Rotation;
             }
         }
         if (mSourcePoseHandler != null && mDestiationPoseHandler != null) {

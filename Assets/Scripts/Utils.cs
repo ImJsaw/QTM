@@ -3,6 +3,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using Newtonsoft.Json;
 using QualisysRealTime.Unity;
+using System.Collections.Generic;
 
 public class Utils {
 
@@ -43,6 +44,20 @@ public class Utils {
     public static T load<T>(string filename = "1.txt") {
         return JsonConvert.DeserializeObject<T>(File.ReadAllText(filename));
         //return byte2Origin<T>(File.ReadAllBytes(filename));
+    }
+
+    public static Vector3 GetMeanVector(List<Vector3> positions) {
+        if (positions.Count == 0)
+            return Vector3.zero;
+        float x = 0f;
+        float y = 0f;
+        float z = 0f;
+        foreach (Vector3 pos in positions) {
+            x += pos.x;
+            y += pos.y;
+            z += pos.z;
+        }
+        return new Vector3(x / positions.Count, y / positions.Count, z / positions.Count);
     }
 
 
