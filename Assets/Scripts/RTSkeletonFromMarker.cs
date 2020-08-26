@@ -75,6 +75,37 @@ public class RTSkeletonFromMarker : MonoBehaviour {
                     if (getDotData("RPSI") != Vector3.zero)
                         toAvg.Add(getDotData("RPSI"));
                     break;
+                case "Spine":
+                    if (getDotData("LPSI") != Vector3.zero)
+                        toAvg.Add(getDotData("LPSI"));
+                    if (getDotData("RPSI") != Vector3.zero)
+                        toAvg.Add(getDotData("RPSI"));
+                    if (getDotData("T8") != Vector3.zero)
+                        toAvg.Add(getDotData("T8"));
+                    break;
+                case "Spine1":
+                    if (getDotData("T8") != Vector3.zero)
+                        toAvg.Add(getDotData("T8"));
+                    break;
+                case "Spine2":
+                    if (getDotData("C7") != Vector3.zero)
+                        toAvg.Add(getDotData("C7"));
+                    if (getDotData("T8") != Vector3.zero)
+                        toAvg.Add(getDotData("T8"));
+                    break;
+                case "Neck":
+                    if (getDotData("C7") != Vector3.zero)
+                        toAvg.Add(getDotData("C7"));
+                    break;
+                case "Head":
+                    if (getDotData("C7") != Vector3.zero)
+                        toAvg.Add(getDotData("C7"));
+                    if (getDotData("LHead") != Vector3.zero)
+                        toAvg.Add(getDotData("LHead"));
+                    if (getDotData("RHead") != Vector3.zero)
+                        toAvg.Add(getDotData("RHead"));
+                    break;
+                //////down side
                 case "RightUpLeg":
                     if (getDotData("RTRO") != Vector3.zero)
                         toAvg.Add(getDotData("RTRO"));
@@ -103,7 +134,8 @@ public class RTSkeletonFromMarker : MonoBehaviour {
                     if (getDotData("LHEE") != Vector3.zero)
                         toAvg.Add(getDotData("LHEE"));
                     break;
-                case "RightShoulder":
+                ////upside
+                case "RightArm":
                     if (getDotData("RSAP") != Vector3.zero)
                         toAvg.Add(getDotData("RSAP"));
                     break;
@@ -115,9 +147,21 @@ public class RTSkeletonFromMarker : MonoBehaviour {
                     break;
                 case "RightHand":
                     if (getDotData("RUS") != Vector3.zero)
-                        toAvg.Add(getDotData("RUS"));
-                    if (getDotData("RUS") != Vector3.zero)
                         segment.Value.Position = getDotData("RUS");
+                    break;
+                case "LeftArm":
+                    if (getDotData("LSAP") != Vector3.zero)
+                        toAvg.Add(getDotData("LSAP"));
+                    break;
+                case "LeftForeArm":
+                    if (getDotData("LLHE") != Vector3.zero)
+                        toAvg.Add(getDotData("LLHE"));
+                    if (getDotData("LMHE") != Vector3.zero)
+                        toAvg.Add(getDotData("LMHE"));
+                    break;
+                case "LeftHand":
+                    if (getDotData("LUS") != Vector3.zero)
+                        segment.Value.Position = getDotData("LUS");
                     break;
                 default:
                     break;
@@ -139,24 +183,50 @@ public class RTSkeletonFromMarker : MonoBehaviour {
     private void setSkeletonRotation(mSkeleton sk) {
         foreach (var segment in sk._seg) {
             switch (segment.Value.Name) {
+                case "Spine":
                 case "Hips":
                     if (getDotData("LPSI") != Vector3.zero && getDotData("RPSI") != Vector3.zero && getDotData("T8") != Vector3.zero) {
                         Vector3 v = getDotData("LPSI") - getDotData("RPSI");
-                        Quaternion quat = Quaternion.LookRotation(v, getDotData("T8") - (getDotData("LPSI") + getDotData("RPSI")) / 2);
+                        Quaternion quat = Quaternion.LookRotation(v, getDotData("T8") - segment.Value.Position);
                         segment.Value.Rotation = quat * Quaternion.LookRotation(Vector3.right, Vector3.up);
                     }
                     break;
+                case "LeftShoulder":
+                case "RightShoulder":
+                case "Spine2":
+                case "Spine1":
+                    if (getDotData("XP") != Vector3.zero && getDotData("C7") != Vector3.zero && getDotData("T8") != Vector3.zero) {
+                        Vector3 v = getDotData("T8") - getDotData("XP");
+                        Quaternion quat = Quaternion.LookRotation(v, getDotData("T8") - getDotData("C7"));
+                        segment.Value.Rotation = quat * Quaternion.LookRotation(Vector3.back, Vector3.down) ;
+                    }
+                    break;
+                case "Neck":
+                    if (getDotData("LHead") != Vector3.zero && getDotData("RHead") != Vector3.zero && getDotData("C7") != Vector3.zero && getDotData("T8") != Vector3.zero) {
+                        Vector3 v = getDotData("T8") - (getDotData("RHead") + getDotData("LHead")) / 2;
+                        Quaternion quat = Quaternion.LookRotation(v, getDotData("T8") - getDotData("C7"));
+                        segment.Value.Rotation = quat * Quaternion.LookRotation(Vector3.back, Vector3.down) * Quaternion.Euler(50, 0, 0);
+                    }
+                    break;
+                case "Head":
+                    if (getDotData("LHead") != Vector3.zero && getDotData("RHead") != Vector3.zero && getDotData("C7") != Vector3.zero && getDotData("T8") != Vector3.zero) {
+                        Vector3 v = getDotData("T8") - (getDotData("RHead") + getDotData("LHead"))/2;
+                        Quaternion quat = Quaternion.LookRotation(v, getDotData("T8") - getDotData("C7"));
+                        segment.Value.Rotation = quat * Quaternion.LookRotation(Vector3.back, Vector3.down) * Quaternion.Euler(75,0,0);
+                    }
+                    break;
+                //// down part
                 case "RightUpLeg":
                     if (getDotData("RMFC") != Vector3.zero && getDotData("RSHA") != Vector3.zero && getDotData("RPSI") != Vector3.zero) {
-                        Vector3 v = getDotData("RMFC") - getDotData("RLFC");
-                        Quaternion quat = Quaternion.LookRotation(v, getDotData("RMFC")  - getDotData("RPSI") );
+                        Vector3 v = getDotData("RMFC") - ( getDotData("RLFC") + getDotData("RSHA"))/2;
+                        Quaternion quat = Quaternion.LookRotation(v, getDotData("RTT")  - segment.Value.Position);
                         segment.Value.Rotation =  quat * Quaternion.LookRotation(Vector3.left, Vector3.down);
                     }
                     break;
                 case "RightLeg":
                     if (getDotData("RHEE") != Vector3.zero && getDotData("RMFC") != Vector3.zero && getDotData("RSHA") != Vector3.zero) {
-                        Vector3 v = getDotData("RMFC") - getDotData("RLFC");
-                        Quaternion quat = Quaternion.LookRotation(v, getDotData("RHEE") - getDotData("RLFC"));
+                        Vector3 v = getDotData("RMFC") - (getDotData("RLFC") + getDotData("RSHA")) / 2;
+                        Quaternion quat = Quaternion.LookRotation(v, getDotData("RHEE") - getDotData("RSHA"));
                         segment.Value.Rotation = quat * Quaternion.LookRotation(Vector3.left, Vector3.down);
                     }
                     break;
@@ -169,15 +239,15 @@ public class RTSkeletonFromMarker : MonoBehaviour {
                     break;
                 case "LeftUpLeg":
                     if (getDotData("LMFC") != Vector3.zero && getDotData("LSHA") != Vector3.zero && getDotData("LPSI") != Vector3.zero) {
-                        Vector3 v = getDotData("LMFC") - getDotData("LLFC");
-                        Quaternion quat = Quaternion.LookRotation(v, getDotData("LMFC") - getDotData("LPSI"));
+                        Vector3 v = getDotData("LMFC") - (getDotData("LLFC") + getDotData("LSHA")) / 2;
+                        Quaternion quat = Quaternion.LookRotation(v, getDotData("LTT") - segment.Value.Position);
                         segment.Value.Rotation = quat * Quaternion.LookRotation(Vector3.right, Vector3.down);
                     }
                     break;
                 case "LeftLeg":
                     if (getDotData("LHEE") != Vector3.zero && getDotData("LMFC") != Vector3.zero && getDotData("LSHA") != Vector3.zero) {
-                        Vector3 v = getDotData("LMFC") - getDotData("LLFC");
-                        Quaternion quat = Quaternion.LookRotation(v, getDotData("LHEE") - getDotData("LLFC"));
+                        Vector3 v = getDotData("LMFC") - (getDotData("LLFC") + getDotData("LSHA")) / 2;
+                        Quaternion quat = Quaternion.LookRotation(v, getDotData("LHEE") - getDotData("LSHA"));
                         segment.Value.Rotation = quat * Quaternion.LookRotation(Vector3.right, Vector3.down);
                     }
                     break;
@@ -188,24 +258,43 @@ public class RTSkeletonFromMarker : MonoBehaviour {
                         segment.Value.Rotation = quat * Quaternion.LookRotation(Vector3.up, Vector3.right);
                     }
                     break;
-                /*
-                case "RightShoulder":
-                    if (getDotData("RSAP") != Vector3.zero && getDotData("RLHE") != Vector3.zero && getDotData("RMHE") != Vector3.zero) {
-                        Vector3 v = getDotData("RMHE") - getDotData("RLHE");
-                        Quaternion quat = Quaternion.LookRotation(v, getDotData("RSAP") - ((getDotData("RLHE") + getDotData("RMHE")) / 2));
-                        segment.Value.Rotation = Quaternion.LookRotation(Vector3.left, Vector3.up) * quat * dynQuat();//Quaternion.LookRotation(Vector3.left, Vector3.down);
+                ///////up part
+                case "RightArm":
+                    if (getDotData("RLHE") != Vector3.zero && getDotData("RMHE") != Vector3.zero && getDotData("RSAP") != Vector3.zero) {
+                        Vector3 v = getDotData("RLHE") - getDotData("RMHE");
+                        Quaternion quat = Quaternion.LookRotation(v, (getDotData("RLHE") + getDotData("RMHE")) / 2 - getDotData("RSAP"));
+                        segment.Value.Rotation = quat * Quaternion.LookRotation(Vector3.right, Vector3.forward);
+                        
                     }
                     break;
                 case "RightForeArm":
-                    if (getDotData("RUS") != Vector3.zero && getDotData("RLHE") != Vector3.zero && getDotData("RMHE") != Vector3.zero) {
-                        Vector3 v = getDotData("RMHE") - getDotData("RLHE");
-                        Quaternion quat = Quaternion.LookRotation((getDotData("RLHE") + getDotData("RMHE")) / 2 - getDotData("RUS"), v);
-                        segment.Value.Rotation = Quaternion.LookRotation(Vector3.left, Vector3.up) * quat * dynQuat();
+                    if (getDotData("RUS") != Vector3.zero ) {
+                        Vector3 v = getDotData("RLHE") - getDotData("RMHE");
+                        Quaternion quat = Quaternion.LookRotation(v, getDotData("RUS")  - segment.Value.Position);
+                        segment.Value.Rotation = quat * Quaternion.LookRotation(Vector3.right, Vector3.forward);
                     }
                     break;
-                 */
-                case "RightHand":
+                case "LeftArm":
+                    if (getDotData("LLHE") != Vector3.zero && getDotData("LMHE") != Vector3.zero && getDotData("LSAP") != Vector3.zero) {
+                        Vector3 v = getDotData("LLHE") - getDotData("LMHE");
+                        Quaternion quat = Quaternion.LookRotation(v, (getDotData("LLHE") + getDotData("LMHE")) / 2 - getDotData("LSAP"));
+                        segment.Value.Rotation = quat * Quaternion.LookRotation(Vector3.left, Vector3.forward);
 
+                    }
+                    break;
+                case "LeftForeArm":
+                    if (getDotData("LUS") != Vector3.zero) {
+                        Vector3 v = getDotData("LLHE") - getDotData("LMHE");
+                        Quaternion quat = Quaternion.LookRotation(v, getDotData("LUS") - segment.Value.Position);
+                        segment.Value.Rotation = quat * Quaternion.LookRotation(Vector3.left, Vector3.forward);
+                    }
+                    break;
+                /////cannot get hand rot
+                case "RightHand":
+                    segment.Value.Rotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
+                    break;
+                case "LeftHand":
+                    segment.Value.Rotation = Quaternion.LookRotation(Vector3.back, Vector3.up);
                     break;
 
                 default:
