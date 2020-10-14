@@ -96,6 +96,12 @@ namespace QualisysRealTime.Unity {
             Name = sk.Name;
             _seg = sk.Segments.ToList();
         }
+
+        public mSkeleton(mSkeleton sk) {
+            Name = sk.Name;
+            _seg = sk._seg;
+        }
+
         public string Name;
         public Dictionary<uint, Segment> Segments {
             get {

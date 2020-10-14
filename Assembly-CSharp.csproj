@@ -83,6 +83,7 @@
      <Compile Include="Assets\Qualisys\QTM-Unity-Realtime-Streaming\Streaming\RTSkeleton.cs" />
      <Compile Include="Assets\Qualisys\QTM-Unity-Realtime-Streaming\Streaming\RTUnlabeledMarker.cs" />
      <Compile Include="Assets\Scripts\RTSkeletonFromMarker.cs" />
+     <Compile Include="Assets\Scripts\RTSkeletonPost.cs" />
      <Compile Include="Assets\Scripts\RecordMgr.cs" />
      <Compile Include="Assets\Scripts\Utils.cs" />
      <None Include="Assets\smcs.rsp" />

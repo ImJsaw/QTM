@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class RecordMgr : MonoBehaviour {
 
-    public RTSkeleton skeScript = null;
+    public RTSkeletonPost skeScript = null;
     public InputField fileName = null;
     public Text hint = null;
     private string hintTxt = "";
@@ -14,6 +14,16 @@ public class RecordMgr : MonoBehaviour {
     public void OnRecordTrigger() {
         if (skeScript != null)
             skeScript.OnRecordTrigger(fileName.text);
+    }
+
+    public void OnSaveCalibrateTrigger() {
+        if (skeScript != null)
+            skeScript.saveCalibrate(fileName.text);
+    }
+
+    public void OnReadCalibrateTrigger() {
+        if (skeScript != null)
+            skeScript.readCalibrate(fileName.text);
     }
 
     public void OnReplay() {

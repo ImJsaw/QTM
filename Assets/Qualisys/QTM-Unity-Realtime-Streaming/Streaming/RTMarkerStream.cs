@@ -81,6 +81,8 @@ namespace QualisysRealTime.Unity
                     markers[i].name = markerData[i].Name;
                     markers[i].GetComponent<Renderer>().material.color = markerData[i].Color;
                     markers[i].transform.position = markerData[i].Position;
+                    markers[i].transform.localPosition += new Vector3(0.1f,0,0);
+
                     markers[i].SetActive(true);
                     markers[i].GetComponent<Renderer>().enabled = visibleMarkers;
                     markers[i].transform.localScale = Vector3.one * markerScale;
